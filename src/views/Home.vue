@@ -15,30 +15,11 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-breed" label="Enter Pets Breed:" label-for="pet-breed">
-        <b-form-input
-          id="pet-breed"
-          type="text"
-          v-model="formData.breed"
-          required
-          placeholder="Enter pets breed"
-        ></b-form-input>
-      </b-form-group>
-
       <b-form-group id="input-species" label="Species:" label-for="pet-species">
         <b-form-select
           id="pet-species"
           v-model="formData.species"
           :options="['Cats', 'Dogs']"
-          required
-        ></b-form-select>
-      </b-form-group>
-
-      <b-form-group id="input-gender" label="Gender:" label-for="pet-gender">
-        <b-form-select
-          id="pet-gender"
-          v-model="formData.gender"
-          :options="['Male', 'Female']"
           required
         ></b-form-select>
       </b-form-group>
@@ -69,15 +50,15 @@ export default {
       showPetForm: false,
       formData: {
         name: '',
-        breed: '',
-        gender: '',
         age: 0,
         species: null
       }
     }
   },
   computed: {
-
+    ...mapGetters([
+      'animalsCount'
+    ])
   },
   methods: {
     ...mapActions([
@@ -92,8 +73,6 @@ export default {
         species,
         pet: {
           name,
-          breed,
-          gender,
           age
         }
       }
@@ -101,8 +80,6 @@ export default {
 
       this.formData = {
         name: '',
-        breed: '',
-        gender: '',
         age: 0,
         species: null
       }
